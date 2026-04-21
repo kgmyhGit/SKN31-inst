@@ -8,7 +8,8 @@ st.set_page_config(page_title="Layout&Cache", layout="wide")
 # 행을 여러 열로 나눠서 출력한다.
 # st.columns(나눌 개수)
 ##################################################
-
+st.title("타이틀")
+st.subheader("서브헤더")
 
 col1, col2 = st.columns(2)
 # print(type(col1))
@@ -43,7 +44,7 @@ col4.metric(label="일본JPY(100엔)", value="958.63 원", delta="-7.44 원")
 # @st.cache_data
 #   - data를 반환하는 함수에 사용
 #   - 파이썬 value, DataFrame
-# @st.cache.resource
+# @st.cache_resource
 #   - resource를 반환하는 함수에 사용
 #   - 머신러닝/딥러닝 모델, Database 연결등
 #  

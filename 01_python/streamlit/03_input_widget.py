@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-
+# streamlit run 03_input_widget.py    
 st.set_page_config(page_title="Input Widget", layout="wide")
 
 ################################################################
@@ -12,7 +12,8 @@ st.set_page_config(page_title="Input Widget", layout="wide")
 ################################################################
 st.subheader("text 입력")
 name_value = st.text_input("이름")
-st.write("이름: " + name_value)
+if name_value != "":
+    st.write("이름: " + name_value)
 
 st.subheader("여러줄 텍스트 입력")
 info = st.text_area("정보", height=200)  #height: pixcel
@@ -55,6 +56,7 @@ st.subheader("링크버튼")
 col1, col2, col3 = st.columns(3)
 col1.link_button("Streamlit", "https://streamlit.io/")
 col2.link_button("구글", "https://google.co.kr")
+col2.write("안녕")
 col3.link_button("Naver", "https://www.naver.com")
 
 
@@ -63,7 +65,7 @@ st.subheader("Select Box")
 option = st.selectbox(
     "지역을 선택하세요",
     ("서울", "인천", "부산", "광주"),
-    # index=None
+    index=3
 )
 st.write("**선택한 지역**:", option)
 
@@ -71,6 +73,7 @@ st.write("**선택한 지역**:", option)
 st.subheader("Checkbox")
 @st.cache_data
 def get_data():
+    # 파일에 저장된 표를 읽어서  DataFrame으로 만든다.
     df = pd.read_csv("data/boston_housing.csv").head(10)
     return df
 
@@ -102,12 +105,15 @@ os.makedirs(save_dir, exist_ok=True)
 if uploaded_file is not None:
     # UploadFile.getvalue(): 업로드된 파일을 bytes로 반환
     # UploadFile.name      : 업로드된 파일이름 반환.
-    bytes_data = uploaded_file.getvalue()
+    bytes_data = uploaded_file.getvalue() # 업로드된 파일 가져오기
+    # 저장할폴더/업로드파일명 -> 저장경로
     save_filepath = os.path.join(save_dir, uploaded_file.name)
+
     with open(save_filepath, "wb") as fw:
         fw.write(bytes_data)
     st.write(uploaded_file.name)
     st.write("타입:" + str(type(bytes_data)))
+
     #################### 업로드 이미지 화면에 출력 (bytes to PIL.Image)
     data_io = io.BytesIO(bytes_data)
     img = Image.open(data_io)

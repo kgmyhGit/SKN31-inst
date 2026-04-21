@@ -9,10 +9,10 @@ import numpy as np
 # 테이블(표) 데이터를 표현하는 자료구조. Pandas 패키지를 설치한 뒤 사용할 수있다.
 # pip install pandas
 ####################################################################################
-
+# streamlit  run 02_table_metric.py
 st.header("DataFrame 출력")
 st.subheader('dataframe()')
-# DataFrame 생성
+# DataFrame 생성 (표)
 df = pd.DataFrame({
     'column1': [1, 2, 3, 4],
     'column2': [10, 20, 30, 40],
@@ -50,4 +50,4 @@ st.metric(
     value="10°C",           # 출력할 값
     delta="1.2°C"           # metric의 등락 크기값(옵션). `+` 로 시작하거나 생략하면 오름, `-` 로 시작하면 내림.
 )
-st.metric(label="삼성전자**", value="60,600원", delta="-700원 (-1.14%)")
+st.metric(label="**삼성전자**", value="60,600원", delta="-700원 (-1.14%)")
