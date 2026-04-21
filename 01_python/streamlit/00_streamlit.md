@@ -24,6 +24,9 @@
 
 - Streamlit은 Django나 Flask 같은 범용 웹 프레임워크가 아니다. 그래서 일반적인 웹서비스(로그인, 결제, 게시판)를 구현하기엔 제약이 많다. 또한 기본 구조가 단일 스레드(single-thread) 중심이라 동시접속자가 수십~수백 명을 넘으면 성능 저하 발생한다.
 
+## 설치
+`pip install streamlit`
+
 ## `streamlit run` 명령어
 
 Streamlit 으로 작성한 앱을 실행하는 가장 기본적인 명령어.

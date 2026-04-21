@@ -1,20 +1,21 @@
 import streamlit as st
  
+ 
 # 타이틀 입력
-st.title('이것은 타이틀 입니다')
+st.title('이것은 타이틀 입니다 👍👍 :streamlit:')
 
-# 이모티콘 입력
-## streamlit 지원 이모지: https://streamlit-emoji-shortcodes-streamlit-app-gwckff.streamlit.app/
-## OS 지원 이모지: `window키 + .` (맥: `한영전환` 아이콘 -> `이모티콘 및 기호보기` 선택)
-st.title('즐겁게 합시다. :laughing:')
+# # 이모티콘 입력
+# ## streamlit 지원 이모지: https://streamlit-emoji-shortcodes-streamlit-app-gwckff.streamlit.app/
+# ## OS 지원 이모지: `window키 + .` (맥: `한영전환` 아이콘 -> `이모티콘 및 기호보기` 선택)
+# st.title('즐겁게 합시다. :laughing:')
 
-# Header 입력
+# # Header 입력
 st.header('헤더를 입력할 수 있어요! :star2:')
 
-# Subheader 입력
+# # Subheader 입력
 st.subheader('이것은 subheader 입니다 :100:')
 
-# 일반 텍스트 입력
+# # 일반 텍스트 입력
 st.text('일반 텍스트입니다. 👌👌')
 st.text(10)
 
@@ -39,7 +40,7 @@ st.markdown('*Streamlit*은 **마크다운 문법을 지원**합니다.')
 # 컬러코드: blue, green, orange, red, violet
 ## :컬러코드[출력할 내용] ex) :blue[안녕하세요.]
 st.markdown("컬러코드를 이용해서 텍스트 색을 지정합니다. :green[초록색], **:blue[파란색]**, *:red[빨강색입니다.]*")
-st.markdown("Latax를 이용해 출력할 수식은 \$ \$ 로 감싸줍니다. $\cfrac{1}{2}$, :green[$\sqrt{x^2+y^2}=1$]")
+st.markdown("1/2 Latax를 이용해 출력할 수식은 \$ \$ 로 감싸줍니다. $\cfrac{1}{2}$, :green[$\sqrt{x^2+y^2}=1$]")
 
 ###### LaTex 수식 출력 함수. $ $ 로 감쌀 필요없다.
 st.latex('\sqrt{x^2+y^2}=1')
@@ -104,3 +105,15 @@ plt.hist(arr, bins=30)
 fig
 # st.pyplot() 이용해 출력. (위에는 magic write)
 st.pyplot(fig)
+
+st.divider()
+
+st.write(
+"""
+# 제목
+좋아하는 색 
+
+- 파랑색
+- 빨강색
+"""
+)
