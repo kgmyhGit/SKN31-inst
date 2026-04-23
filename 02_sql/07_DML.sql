@@ -1,4 +1,4 @@
-
+select * from testdb.emp;
 /* *********************************************************************
 UPDATE : 테이블의 컬럼의 값을 수정
 UPDATE 테이블명
@@ -35,13 +35,15 @@ update emp
 set   comm_pct = null
 where dept_id = 100;
 
-
 /* *********************************************************************
 DELETE : 테이블의 행을 삭제
 구문 
  - DELETE FROM 테이블명 [WHERE 제약조건]
    - WHERE: 삭제할 행을 선택
 ************************************************************************ */
+select * from emp where dept_id = 50; -- 192
+select * from emp where emp_id = 192;
+delete from dept where dept_id = 50;
 
 -- 부서테이블에서 부서_ID가 200인 부서 삭제
 select * from dept where dept_id = 200;
@@ -62,6 +64,9 @@ delete from emp where job_id = 'SA_MAN' and salary <= 12000;
 select * from emp where comm_pct is null and job_id = 'IT_PROG';
 
 delete from emp where comm_pct is null and job_id = 'IT_PROG';
+
+
+
 
 
 

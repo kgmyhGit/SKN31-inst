@@ -180,7 +180,6 @@ where  e.dept_id = 90;
 -- 2003년~2005년 사이에 입사한 모든 직원의 id(emp.emp_id), 이름(emp.emp_name), 
 -- 업무명(job.job_title), 급여(emp.salary), 
 -- 입사일(emp.hire_date),상사이름(emp.emp_name), 상사의입사일(emp.hire_date), 소속부서이름(dept.dept_name), 부서위치(dept.loc)를 조회.
-
 select  e.emp_id,
 		e.emp_name,
         j.job_title,

@@ -21,7 +21,8 @@
 
 - 서브쿼리는 반드시 ( ) 로 묶어줘야 한다.
 ************************************************************************** */
--- 직원_ID(emp.emp_id)가 120번인 직원과 같은 업무(emp.job_id)를 하는 직원의 id(emp_id),이름(emp.emp_name), 업무(emp.job_id), 급여(emp.salary) 조회
+-- 직원_ID(emp.emp_id)가 120번인 직원과 같은 업무(emp.job_id)를 하는 직원의 id(emp_id),이름(emp.emp_name),
+--  업무(emp.job_id), 급여(emp.salary) 조회
 
 select emp_id, emp_name, job_id, salary
 from   emp
@@ -35,7 +36,7 @@ select job_id, dept_id from emp where emp_id=115;
 
 select * from emp 
 where (job_id, dept_id) = (select job_id, dept_id from emp where emp_id=115);
--- 주의: where (job_id, dept_id) = ('PU_MAN', 30); -- mysql은 가능, oracle 은 안됨.
+-- where (job_id, dept_id) = ('PU_MAN', 30); -- mysql은 가능, oracle 은 안됨.
 
 -- 직원의 ID(emp.emp_id)가 150인 직원과 업무(emp.job_id)와 상사(emp.mgr_id)가 같은 직원들의 
 -- id(emp.emp_id), 이름(emp.emp_name), 업무(emp.job_id), 상사(emp.mgr_id) 를 조회
@@ -48,7 +49,6 @@ where  (job_id, mgr_id) = (select job_id, mgr_id from emp where emp_id=150);
 
 select job_id, mgr_id from emp where emp_id=150;
 
-
 -- 직원들 중 급여(emp.salary)가 전체 직원의 평균 급여보다 적은 직원들의 id(emp.emp_id), 이름(emp.emp_name), 급여(emp.salary)를 조회. 
 select avg(salary) from emp;
 
@@ -58,8 +58,10 @@ where  salary  < (select avg(salary) from emp)
 order by salary desc;
 
 
--- 부서직원들의 평균 급여가 전체 직원의 평균(emp.salary) 이상인 부서의 이름(dept.dept_name), 평균 급여(emp.salary) 조회.
+-- 부서직원들의 평균 급여가 전체 직원의 평균(emp.salary) 이상인 부서의 이름(dept.dept_name),
+--  평균 급여(emp.salary) 조회.
 -- 평균급여는 소숫점 2자리까지 나오고 통화표시($)와 단위 구분자 출력
+
 select  dept_id,
 		dept_name,
         concat('$', format(급여평균, 2)) "급여평균"
@@ -85,7 +87,7 @@ where dept_id = (select dept_id
 
 
 -- Sales 부서(dept.dept_name) 의 평균 급여(emp.salary)보다 급여가 많은 직원들의 모든 정보를 조회.
-select * from emp 
+select * from emp  -- 8960이상
 where salary > (
 				select avg(salary)
 				from   emp
@@ -93,8 +95,12 @@ where salary > (
 			   );
                
 select dept_id from dept where dept_name = 'Sales';
-
--- 전체 직원들 중 담당 업무 ID(emp.job_id) 가 'ST_CLERK'인 직원들의 평균 급여보다 적은 급여를 받는 직원들의 모든 정보를 조회. 
+select avg(salary)
+				from   emp
+				where  dept_id=80;
+                
+-- 전체 직원들 중 담당 업무 ID(emp.job_id) 가 'ST_CLERK'인 직원들의 평균 급여보다 적은 급여를 받는
+--  직원들의 모든 정보를 조회. 
 -- 단 업무 ID가 'ST_CLERK'이 아닌 직원들만 조회. 
 select avg(salary) from emp where job_id = 'ST_CLERK'; -- 2817.647059
 
@@ -123,15 +129,17 @@ order by salary desc;
 	- 비교연산자 any : 조회된 값들 중 하나만 참이면 참 (where 컬럼 > any(서브쿼리) )
 	- 비교연산자 all : 조회된 값들 모두와 참이면 참 (where 컬럼 > all(서브쿼리) )
 ------------------------------------------------*/
--- 'Alexander' 란 이름(emp.emp_name)을 가진 관리자(emp.mgr_id)의 부하 직원들의 ID(emp_id), 이름(emp_name), 업무(job_id), 입사년도(hire_date-년도만출력), 급여(salary)를 조회
-select * from emp where emp_name = 'Alexander';
+-- 'Alexander' 란 이름(emp.emp_name)을 가진 관리자(emp.mgr_id)의 
+-- 부하 직원들의 ID(emp_id), 이름(emp_name), 업무(job_id), 입사년도(hire_date-년도만출력), 
+-- 급여(salary)를 조회
+select emp_id from emp where emp_name = 'Alexander';
 
 select * from emp where mgr_id in (select emp_id from emp where emp_name = 'Alexander');
 
 
 --  부서 위치(dept.loc) 가 'New York'인 부서에 소속된 직원의 ID(emp.emp_id), 이름(emp.emp_name), 부서_id(emp.dept_id) 
 -- 를 sub query를 이용해 조회.
-select * from dept where loc = 'New York';
+select dept_id from dept where loc = 'New York';
 
 select emp_id, emp_name, dept_id
 from   emp
@@ -155,9 +163,11 @@ select job_id from job where max_salary <= 6000;
 
 select * from emp where job_id in (select job_id from job where max_salary <= 6000);
 
--- 전체 직원들중 부서_ID(emp.dept_id)가 20인 부서의 모든 직원들 보다 급여(emp.salary)를 많이 받는 직원들의 정보를 sub query를 이용해 조회.
+-- 전체 직원들중 부서_ID(emp.dept_id)가 20인 부서의 모든 직원들 보다 급여(emp.salary)를 많이 받는 
+-- 직원들의 정보를 sub query를 이용해 조회.
 
 select * from emp
 where salary > all(select salary from emp where dept_id = 20);
 
+select salary from emp where dept_id = 20
 
