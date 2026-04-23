@@ -2,14 +2,14 @@ use testdb;
 
 DROP TABLE IF EXISTS emp;
 CREATE TABLE emp(
-    emp_id 		INT PRIMARY KEY,
-    emp_name 	VARCHAR(20) NOT NULL,
-    job 		VARCHAR(35) NOT NULL,
-    mgr_id 		INT,
-    hire_date 	DATE NOT NULL,
-    salary 		DECIMAL(7,2),    
-    comm_pct 	DECIMAL(2,2),
-    dept_name 	VARCHAR(30)
+    emp_id 		INT PRIMARY KEY, -- 직원 ID
+    emp_name 	VARCHAR(20) NOT NULL, -- 직원 이름
+    job 		VARCHAR(35) NOT NULL, -- 담당 업무
+    mgr_id 		INT,                  -- 상사 ID
+    hire_date 	DATE NOT NULL, -- 입사일
+    salary 		DECIMAL(7,2),  -- 월급  
+    comm_pct 	DECIMAL(2,2),  -- 커미션 비율
+    dept_name 	VARCHAR(30)    -- 부서이름
 );
 
 

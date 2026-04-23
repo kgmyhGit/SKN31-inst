@@ -17,7 +17,7 @@ CREATE DATABASE DB이름;
 -- local 접속 계정
 
 -- 원격 접속 계정
-\
+
 -- 등록된 사용자계정 조회
 
 

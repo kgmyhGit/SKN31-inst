@@ -1,4 +1,3 @@
-
 /***************************************************************
 SQL 주석
 ***************************************************************/
@@ -65,7 +64,6 @@ show databases;
 -- use database이름
 *********************************************************************************************/
 use testdb;
--- create table member
 
 
 /*****************************************************************************
@@ -93,11 +91,12 @@ age:       int            check key - 양수만 값으로 가진다.
 join_date: timestamp      not null, 기본값-값 저장시 일시
 ***********************************************************************************************************/
 -- 테이블 생성
+use testdb;
 create table member(
-	  id  varchar(10)  primary key,
+	id  varchar(10)  primary key,
     password  varchar(10)  not null,
     name  varchar(30) not null,
-    point  int,
+    point  int default 0,
     email  varchar(100)  unique key,
     gender char(1) not null check(gender in ('m', 'f')),
     age   int  check(age > 0),
@@ -112,6 +111,7 @@ desc member;
 -- 테이블 삭제
 drop table if exists member;
 
+show tables;
 
 /* *********************************************************************
 INSERT 문 - 행 추가
@@ -124,16 +124,18 @@ INSERT 문 - 행 추가
 insert into member (id, password, name, point, email, gender, age, join_date) 
 values ('id-1', '1111', '홍길동', 1000, 'h@a.com', 'm', 20, '2025-10-14 17:25:45');
 
+-- 모든 컬럼에 값을 넣을때 컬럼 지정 생략
 insert into member values ('id-2', '1111', '홍길동', 1000, 'h2@a.com', 'm', 20, '2025-10-14 17:25:45');
 
--- join_date는 default 값(sql 실행 일수)가 insert 됨.
+-- join_date는 default 값(sql 실행 일시)가 point는 0이 insert 됨.
 insert into member (id, password, name, gender) values ('id-3', '2222', '이순신', 'm');
 
 insert into member (id, password, name, gender, age) values ('id-4', '2222', '유관순', 'f', 20);
 
 insert into member (id, password, name, gender, age, join_date) values ('id-5', '2222', '유관순', 'f', 20, '2000-10-10');
 
-insert into member (id, password, name, gender, age) values ('id-6', '1111', '이순신', 'm', null);
+insert into member (id, password, name, gender, age, point) values ('id-6', '1111', '이순신', 'm', null, null);
+-- default값이 있는 컬럼에 null을 넣을 경우 반드시 명시해야함.
 
 select * from member;
 
