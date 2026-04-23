@@ -35,7 +35,7 @@ select sum(salary),
 	   avg(salary),
        min(salary),
        max(salary),
-       stddev(salary),
+       round(stddev(salary), 2) "stddev",
        variance(salary)
 from   emp;
 
@@ -103,10 +103,10 @@ select  job,
         variance(salary),
         count(*) 
 from emp
-group by job;        
+group by job;
 
 -- 입사연도 별 직원들의 급여 평균.
-select year(hire_date), avg(salary)
+select year(hire_date) "입사년도", avg(salary)
 from   emp 
 group by year(hire_date)
 order by 1;
@@ -155,7 +155,7 @@ having 절
     `having 제약조건`
     - 연산자는 where절의 연산자를 사용한다. 
     - 피연산자는 집계함수(의 결과) 
-      - ex) having avg(salary) > 5000
+      - ex) having avg(salary) > 5000 and count(*) > 1
 		
 - where절은 행을 filtering한다.
   having절은 group by 로 묶인 그룹들을 filtering한다.		
@@ -163,17 +163,18 @@ having 절
 
 -- 20명 이상이 입사한 년도와 (그 해에) 입사한 직원들의 평균 급여, 직원수를 조회.
 select year(hire_date),
-	     avg(salary),
+	   avg(salary),
        count(*)
 from   emp
 group by year(hire_date)
 having count(*) >= 20;
 
--- 평균 급여가(salary) $5000 이상인 부서의 이름(dept_name)과 평균 급여(salary), 직원수를 조회
+-- 평균 급여가(salary) $5000 이상인 부서의 이름(dept_name)과  직원수를 조회
 select  dept_name,
-		    avg(salary),
+		avg(salary),
         count(*)
 from    emp
+
 group by dept_name
 having avg(salary) >= 5000
 order by 2;        
@@ -189,7 +190,16 @@ select year(hire_date), avg(salary)
 from   emp
 where  comm_pct is not null
 group by year(hire_date)
-having avg(salary) >= 9000;
+having avg(salary) >= 9000
+order by 1;
 
+/*
+select   5
+from     1
+where    2
+group by 3
+having   4
+order by 6
+*/
 
 
