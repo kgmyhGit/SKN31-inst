@@ -1,4 +1,4 @@
-
+# uv pip install streamlit
 ##################################################################
 #  streamlit/01_streamlit_chat_exam.py
 #  챗봇 대화 관련 위젯 
@@ -62,4 +62,20 @@ chatbot_message_list = ["오늘 날씨가 어떤가요?",
 "건강에 좋은 간식으로는 어떤 게 있나요?",
 "스트레스를 푸는 좋은 방법이 있을까요?"]
 
+ai_message = chatbot_message_list[idx] # AI 답변
 
+st.title("Streamlit Chatbot Widget 예제")
+
+prompt = st.chat_input("User:")
+print(">>>>>>prompt:", prompt)
+
+with st.chat_message("user"):
+    st.write(prompt)
+
+with st.chat_message("ai"):
+    st.write(ai_message)
+
+
+
+# cd streamlit
+# SKN31-inst\10_AI_Agent\streamlit>  streamlit run 01_streamlit_chat_exam.py
