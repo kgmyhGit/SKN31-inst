@@ -66,16 +66,30 @@ ai_message = chatbot_message_list[idx] # AI 답변
 
 st.title("Streamlit Chatbot Widget 예제")
 
+# 대화내역을 session_state에서 조회, 없으면 등록 (초기화)
+## session_state: dictionary 형태
+if "chat_history" not in st.session_state:  # key 조회
+    st.session_state['chat_history'] = [] 
+    # 없으면 chat_history라는 이름으로 빈 list생성. list[dict]
+    # 개별 메세지를 dictionary로 저장. {"role":"user/ai", "content":"메세지"} - OpenAI 메세지형식
+
+
 prompt = st.chat_input("User:")
-print(">>>>>>prompt:", prompt)
+if prompt:
+    # prompt와 AI응답 메세지를 chat_history에 추가.
+    # Prompt 추가
+    st.session_state["chat_history"].append(
+        {"role":"user", "content":prompt}
+    )
+    # AI 응답메세지 추가
+    st.session_state["chat_history"].append(
+        {"role":"ai", "content":ai_message}
+    )
 
-with st.chat_message("user"):
-    st.write(prompt)
-
-with st.chat_message("ai"):
-    st.write(ai_message)
-
-
+    for message_dict in st.session_state['chat_history']:
+        with st.chat_message(message_dict['role']):
+            st.write(message_dict['content'])
+            
 
 # cd streamlit
 # SKN31-inst\10_AI_Agent\streamlit>  streamlit run 01_streamlit_chat_exam.py
