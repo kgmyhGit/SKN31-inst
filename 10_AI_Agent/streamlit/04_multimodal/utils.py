@@ -10,10 +10,12 @@ def get_file_mimetype(bytes_data: bytes) -> str:
         str - 파일의 타입을 mime-type으로 반환
     """
 
-    pass
+    return magic.from_buffer(bytes_data, mime=True)
 
 
-def get_human_message(text_message: str, bytes_data:bytes=None, mime_type=None, filename=None, history=None) -> list[BaseMessage]:
+def get_human_message(
+        text_message: str, bytes_data:bytes=None, mime_type:str=None, 
+        filename:str=None, history:list=None) -> list[BaseMessage]:
     """사용자 메시지와 선택적(Optional) 파일 첨부를 포함한 LangChain 메시지 리스트를 생성한다.
     대화 히스토리와 현재 사용자의 텍스트 메시지, 그리고 선택적으로 이미지나 PDF 등의 파일을 Base64로 인코딩하여 멀티모달 메시지 형태로 변환한다.
 
@@ -31,4 +33,29 @@ def get_human_message(text_message: str, bytes_data:bytes=None, mime_type=None, 
     Returns
         list[BaseMessage] - LLM에게 전송할 Message 리스트
     """
-    pass
+    # LLM에게 전달할 메세지들을 순서대로 담을 list
+    # chat_history 메세지들, 현재 User Message
+    messages = [] 
+    for msg in history: #history: list[dict] dict key: role, content (OpenAI 형식)
+        if msg['role'] == "user":
+            messages.append(HumanMessage(content=msg['content']))
+        elif msg['role'] == 'ai':
+            messages.append(AIMessage(content=msg['content']))
+
+    # 현재 사용자 입력 메세지를 messages list에 추가
+    content = [
+        {"type":"text", "text":text_message}
+    ]
+    # 첨부파일이 있을 경우 content에 추가.
+    if bytes_data is not None:
+        d_type = "image" if "image" in mime_type else "file" # type 값 조회
+        base64_data = base64.b64encode(bytes_data).decode("utf-8")
+        content.append({
+            "type":d_type, 
+            "source_type":"base64",
+            "data":base64_data,
+            "mime_type":mime_type,
+            "filename":filename
+        })
+    messages.append(HumanMessage(content=content))
+    return messages
