@@ -55,7 +55,8 @@ def get_human_message(
             "source_type":"base64",
             "data":base64_data,
             "mime_type":mime_type,
-            "filename":filename
+            "filename":filename 
         })
+
     messages.append(HumanMessage(content=content))
     return messages
