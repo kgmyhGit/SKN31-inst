@@ -215,3 +215,4 @@ __marimo__/
 08_NLP/data/nsmc/preprocessing_test.pkl
 .gitignore
 08_NLP/data/nsmc/preprocessing_train.pkl
+10_AI_Agent/cache.sqlite
