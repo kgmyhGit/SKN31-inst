@@ -10,15 +10,15 @@
   ---------------------------------------------
 */
 {
-  const a = 10;
-  const b = 3;
+  // const a = 10;
+  // const b = 3;
 
-  console.log(a + b); // 덧셈.
-  console.log(a - b); // 뺄셈.
-  console.log(a * b); // 곱셈.
-  console.log(a / b); // 나눗셈. 3.333...
-  console.log(a % b); // 나머지 연산(모듈러스 연산)1
-  console.log(a ** b); // 제곱연산.
+  // console.log(a + b); // 덧셈.
+  // console.log(a - b); // 뺄셈.
+  // console.log(a * b); // 곱셈.
+  // console.log(a / b); // 나눗셈. 3.333...
+  // console.log(a % b); // 나머지 연산(모듈러스 연산)1
+  // console.log(a ** b); // 제곱연산.
 }
 
 /*
@@ -27,7 +27,7 @@
   ---------------------------------------------
 */
 {
-  // let score = 10;
+  let score = 10;
 
   // 복합 대입 연산자
   // score += 5; // score = score + 5
@@ -52,10 +52,10 @@
 {
   // let count = 10;
 
-  // count++;
+  // count++; // count += 1
   // console.log(count);
 
-  // count--;
+  // count--; // count -= 1
   // console.log(count);
 }
 
@@ -139,24 +139,24 @@ if ("hello") {
   [&& (논리 AND 연산자)]
   왼쪽 값이 falsy면 왼쪽 값을 반환한다. 왼쪽 값이 truthy면 오른쪽 값을 반환한다.
 */
-// console.log(false && "실행"); // false
-// console.log(true && "실행");  // "실행"
-// console.log("" && 100);        // ""
-// console.log("hello" && 100);   // 100
+console.log(false && "실행"); // false
+console.log(true && "실행");  // "실행"
+console.log("" && 100);        // ""
+console.log("hello" && 100);   // 100
 
 /*
   [|| (논리 OR 연산자)]
   왼쪽 값이 truthy면 왼쪽 값을 반환한다. 왼쪽 값이 falsy면 오른쪽 값을 반환한다.
 */
-// console.log("값" || "기본값"); // "값"
-// console.log("" || "기본값");   // "기본값"
+console.log("값" || "기본값"); // "값"
+console.log("" || "기본값");   // "기본값"
 
 /*
   [! (논리 NOT 연산자)]
   논리값을 반대로 바꾼다.
 */
-// console.log(!true);  // false
-// console.log(!false); // true
+console.log(!true);  // false
+console.log(!false); // true
 
 /*
   ---------------------------------------------
@@ -166,10 +166,10 @@ if ("hello") {
   조건식 ? value1 : value2
 */
 {
-  // const age = 20;
-  // const result = age >= 19 ? "성인" : "미성년자";
+  const age = 10;
+  const result = age >= 19 ? "성인" : "미성년자";
 
-  // console.log(result);
+  console.log(result);
 }
 
 /*
@@ -200,14 +200,14 @@ if ("hello") {
 
 /* 문자열을 정수와 실수로 해석 */
 {
-  // console.log(parseInt("123px", 10));  // 123 // 문자열의 왼쪽부터 숫자로 해석할 수 있는 부분까지 읽어 정수로 변환한다. 두 번째 인수 10은 문자열을 10진수로 해석하라는 의미이다.
+  // console.log(parseInt("123px", 10) + 20);  // 123 // 문자열의 왼쪽부터 숫자로 해석할 수 있는 부분까지 읽어 정수로 변환한다. 두 번째 인수 10은 문자열을 10진수로 해석하라는 의미이다.
   // console.log(parseInt("12.9", 10));  // 12
   // console.log(parseInt("101", 2));    // 5 // 문자열을 2진수로 해석하라는 의미이다.
   // console.log(parseInt("hello"));   // NaN
 
-  // console.log(parseFloat("12.9"));   // 12.9
-  // console.log(parseFloat("3.14kg")); // 3.14
-  // console.log(parseFloat("hello"));   // NaN
+  console.log(parseFloat("12.9"));   // 12.9
+  console.log(parseFloat("3.14kg")); // 3.14
+  console.log(parseFloat("hello"));   // NaN
 }
 
 /*

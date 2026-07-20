@@ -35,21 +35,22 @@
 
 /* 백틱 문자열은 여러 줄 문자열과 템플릿 문자열을 만들 때 사용한다. */
 {
-  // const name = "홍길동";
-  // const age = 20;
+  const name = "홍길동";
+  const age = 20;
 
-  // const message = `이름: ${name}
-  // 나이: ${age}`;
+  const message = `이름: ${name}
+나이: ${age}
+반갑습니다.`;
 
-  // console.log(message);
+  console.log(message);
 }
 
 /* ${ } 안에는 계산식도 작성할 수 있다. */
 {
-  // const price = 10000;
-  // const quantity = 3;
+  const price = 10000;
+  const quantity = 3;
 
-  // console.log(`총액: ${price * quantity}원`);
+  console.log(`총액: ${price * quantity}원`);
 }
 
 /*
@@ -65,9 +66,8 @@
 
 /* 계산할 수 없는 숫자 결과는 NaN으로 나타난다. */
 {
-  // const result = Number("hello");
-
-  // console.log(result); // NaN
+  const result = Number("hello");  // 전달된 문자열을 number로 변환
+  console.log(result); // NaN
 }
 
 /*
@@ -77,9 +77,8 @@
   undefined는 값이 아직 할당되지 않은 상태를 나타낸다.
 */
 {
-  // let userName;
-
-  // console.log(userName); // undefined
+  let userName;
+  console.log(userName); // undefined
 }
 
 /* null은 개발자가 값이 없음을 의도적으로 표시할 때 사용한다. */
@@ -116,13 +115,13 @@
   typeof 연산자는 값의 타입을 문자열로 반환한다.
 */
 {
-  // console.log(typeof "hello");    // "string"
-  // console.log(typeof 20);         // "number"
-  // console.log(typeof true);       // "boolean"
-  // console.log(typeof undefined);  // "undefined"
-  // console.log(typeof {});         // "object"
-  // console.log(typeof []);         // "object"
-  // console.log(typeof function(){}); // "function"
+  console.log(typeof "hello");    // "string"
+  console.log(typeof 20);         // "number"
+  console.log(typeof true);       // "boolean"
+  console.log(typeof undefined);  // "undefined"
+  console.log(typeof {});         // "object"
+  console.log(typeof []);         // "object"
+  console.log(typeof function(){}); // "function"
 }
 
 /*
@@ -134,4 +133,4 @@
 
 /* 배열인지 여부를 확인할 때는 Array.isArray()를 사용한다. */
 
-// console.log(Array.isArray([1, 2, 3])); // true
+console.log(Array.isArray([1, 2, 3])); // true

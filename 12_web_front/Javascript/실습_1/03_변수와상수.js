@@ -1,4 +1,9 @@
 /*
+실행:  node 파일명.js
+*/
+
+
+/*
   =============================================
   3. 변수와 상수
   =============================================
@@ -12,10 +17,10 @@
   ---------------------------------------------
   const는 다른 값으로 다시 대입하지 않을 변수를 선언할 때 사용한다.
 */
-{
-  const name = "홍길동";
-  const birthYear = 2000;
-}
+
+const name = "홍길동";
+const birthYear = 2000;
+console.log(name, birthYear);
 
 /* 다른 값을 다시 대입하면 오류가 발생한다. */
 {
@@ -25,13 +30,15 @@
 
 /* 객체나 배열을 const로 선언하더라도 내부 값은 변경할 수 있다. */
 {
-  // const user = {
-  //   name: "홍길동",
-  //   age: 20,
-  // };
+  const user = {
+    name: "홍길동",
+    age: 20,
+  };  // JavaScript 객체 정의
 
-  // user.age = 21; // 가능
-  // user = {};  // 불가능
+  user.age = 21; // 가능 - age값을 변경
+  // user = {};  // 불가능 - user의 값 자체를 변경하려 하므로 안됨.
+  
+  console.log(user);
 }
 
 /*
@@ -46,14 +53,16 @@
   let은 값이 바뀌는 변수를 선언할 때 사용한다.
 */
 {
-  // let score = 80;
-  // score = 90;
+  let score = 80;
+  console.log("let score값:",  score);
+  score = 90;
+  console.log("변경후 score값:",  score);
 }
 
 /* 반복 횟수를 세거나 상태가 변하는 값을 저장할 때 사용한다. */
 {
-  // let count = 0;
-  // count += 1;
+  let count = 0;
+  count += 1;
 }
 
 /*
@@ -84,11 +93,10 @@
   자신이 선언된 block 밖에서는 호출 할 수 없다. (Block Scope)
 */
 {
-  // if (true) {
-  //   const message = "블록 안의 값";
-  //   console.log(message);
-  // }
-
+  if (true) {
+    const message = "블록 안의 값";
+    console.log(message);
+  }
   // console.log(message); // ReferenceError
 }
 
@@ -104,9 +112,9 @@
   숫자로 시작할 수는 없다.
 */
 {
-  // const userName = "홍길동";
-  // const score20 = 90;
-  // const _temp = 10;
+  const userName = "홍길동";
+  const score20 = 90;
+  const _temp = 10;
 }
 
 /* 다음과 같은 이름은 사용할 수 없다. (문법 오류가 발생하므로 주석 처리) */
