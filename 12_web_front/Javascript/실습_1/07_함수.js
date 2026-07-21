@@ -13,13 +13,15 @@
   ---------------------------------------------
 */
 {
-  function add(a, b) {
-    return a + b;
-  }
+  // 함수 정의
+  // function add(a, b) {
+  //   return a + b;
+  // }
+  // // 함수 호출
+  // const result = add(10, 20);
 
-  const result = add(10, 20);
-
-  console.log(result); // 30
+  // console.log(result); // 30
+  // console.log(add(100, 2030));
 }
 
 /*
@@ -45,35 +47,42 @@
   화살표 함수(Arrow Function)는 function 키워드 대신 => 기호를 사용하여   함수를 간결하게 작성하는 문법이다. 화살표 함수도 함수 표현식처럼
   생성된 함수를 변수에 저장하여 사용한다.
 */
-{
-  // const add = (a, b) => {
-  //   return a + b;
-  // };
-}
-/* - (a, b) => { ... }는 화살표 함수이고, 생성된 함수 객체를 add 변수에 저장 */
+// {
+//   // (파라미터) => {실행구문}
+//   const add = (a, b) => {
+//     return a + b;
+//   };
+//   console.log(add(200, 300));
+// }
+// /* - (a, b) => { ... }는 화살표 함수이고, 생성된 함수 객체를 add 변수에 저장 */
 
-/* 함수 본문이 하나의 표현식이면 중괄호와 return을 생략할 수 있다. */
-{
-  // const add = (a, b) => a + b;
-}
+// /* 함수 본문이 하나의 표현식이면 중괄호와 return을 생략할 수 있다. */
+// {
+//   const add = (a, b) => a + b;
+//   console.log(add(220, 300));
+// }
 
-/* 매개변수가 하나이면 괄호를 생략할 수 있다. */
-{
-  // const double = number => number * 2;
-}
+// /* 매개변수가 하나이면 괄호를 생략할 수 있다. */
+// {
+//   const double = number => number * 2;
+//   console.log(double(200));
+// }
 
-/* 매개변수가 없으면 빈 괄호(필수)를 작성한다. */
-{
-  // const greet = () => console.log("안녕하세요.");
-}
+// /* 매개변수가 없으면 빈 괄호(필수)를 작성한다. */
+// {
+//   const greet = () => console.log("안녕하세요.");
+//   r = greet();
+//   console.log(r);
+// }
 
-/* 객체를 바로 반환할 때는 객체를 괄호로 감싼다. */
-{
-  // const createUser = (name, age) => ({
-  //   name,
-  //   age,
-  // });
-}
+// /* 객체를 바로 반환할 때는 객체를 괄호로 감싼다. */
+// {
+//   const createUser = (name, age) => ({
+//     name, //name:name key와 값을가진 변수가 같으면 key만지정.
+//     age,
+//   });
+//   console.log(createUser("이순신", 33));
+// }
 
 /*
   ---------------------------------------------
@@ -100,10 +109,13 @@
 */
 {
   // function sum(...numbers) {
-  //   console.log(numbers);
-  // }
+  //function sum(a, b, c, ...numbers) {
+  // function sum(...a, ...numbers) {
+//     console.log(a, b, c);
+//     console.log(numbers);
+//   }
 
-  // sum(1, 2, 3, 4);
+//   sum(1, 2, 3, 4, 5, 6, 7);
 }
 
 /*
@@ -111,11 +123,11 @@
   전달 된 배열이나 객체에서 필요한 값을 꺼내 매개변수로 받는다.
 */
 {
-  // function printPoint([x, y]) {
-  //   console.log(x, y);
-  // }
+  function printPoint([x, y]) {
+    console.log(x, y);
+  }
 
-  // printPoint([10, 20]);
+  printPoint([10, 20]);
 }
 
 /*
@@ -127,13 +139,19 @@
   JavaScript는 함수를 일급 객체로 취급하므로 고차 함수를 지원한다.
 */
 {
-  // function repeat(count, callback) {
-  //   for (let i = 0; i < count; i++) {
-  //     callback(i);
-  //   }
-  // }
+  function repeat(count, callback) {
+    for (let i = 0; i < count; i++) {
+      callback(i);
+    }
+  }
 
-  // repeat(3, console.log);
+  // repeat(5, console.log);
+  repeat(100, x => {
+    if (x % 10 === 0) {
+      console.log(x);
+    }
+  })
+  
 }
 /*
   - repeat: 고차 함수

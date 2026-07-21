@@ -12,13 +12,13 @@
   함수에 전달된 여러 값을 배열로 모은다.
 */
 {
-  function sum(first, second, ...rest) {
-    console.log(first);
-    console.log(second);
-    console.log(rest);
-  }
+  // function sum(first, second, ...rest) {
+  //   console.log(first);
+  //   console.log(second);
+  //   console.log(rest);
+  // }
 
-  sum(10, 20, 30, 40, 50);
+  // sum(10, 20, 30, 40, 50);
 }
 /*
   나머지 매개변수는 마지막 매개변수에 한 번만 사용할 수 있다.
@@ -53,9 +53,10 @@
   배열의 값을 펼쳐서 전달할 때 사용할 수 있다.
 */
 {
-  // const numbers = [10, 20, 30];
+  // console.log(Math.min(100, 2, 389, 8, 23, 9, -12));
+  const numbers = [10, 20, 30];
 
-  // console.log(Math.max(...numbers)); // 30
+  console.log(Math.max(...numbers)); // 30
 }
 
 /*
@@ -66,15 +67,15 @@
   이를 이용해 원본을 변경하지 않고 요소들을 복사/추가할 수 있다.
 */
 {
-  // const user = {
-  //   name: "홍길동",
-  //   age: 20,
-  // };
+  const user = {
+    name: "홍길동",
+    age: 20,
+  };
 
-  // const copiedUser = {
-  //   ...user,
-  //   address: "서울"
-  // };
+  const copiedUser = {
+    ...user,
+    address: "서울"
+  };
 
-  // console.log(copiedUser); // { name: '홍길동', age: 20, address: '서울' }
+  console.log(copiedUser); // { name: '홍길동', age: 20, address: '서울' }
 }

@@ -17,9 +17,12 @@
   const numbers = [10, 20, 30];
 
   //forEach()에 전달되는 함수는 파라미터로 배열의 개별 요소와 index를 받는다.
-  numbers.forEach((number, index) => {
-    console.log(index, number);
-  });
+  // numbers.forEach((number, index) => {
+  //   console.log(index, number);
+  // });
+  // for (const num of numbers) {
+  //   console.log(num);
+  // }
 }
 
 /*
@@ -43,7 +46,6 @@
   // ];
 
   // const names = users.map(user => user.name); // 각 user의 이름을 배열로 모아서 반환한다.
-
   // console.log(names); // ["홍길동", "이순신"]
 }
 
@@ -67,6 +69,7 @@
   // ];
 
   // const activeUsers = users.filter(user => user.active);
+  // console.log(activeUsers);
 }
 
 /*
@@ -79,9 +82,12 @@
   // const users = [
   //   { id: 1, name: "홍길동" },
   //   { id: 2, name: "이순신" },
+  //   { id: 3, name: "이순신" },
+  //   { id: 4, name: "이순신" }
   // ];
 
-  // const user = users.find(item => item.id === 2);
+  // const user = users.find(item => item.name === "이순신");
+  // // const user = users.filter(item => item.name === "이순신");
 
   // console.log(user);
 }
@@ -93,7 +99,7 @@
   조건을 만족하는 첫 번째 요소의 인덱스를 반환한다. 찾지 못하면 -1을 반환한다.
 */
 {
-  // const numbers = [10, 20, 30];
+  // const numbers = [10, 20, 30, 20, 20, 20];
   // const index = numbers.findIndex(number => number === 20);
 
   // console.log(index); // 1
@@ -106,11 +112,11 @@
   조건을 만족하는 요소가 하나라도 있으면 true를 반환한다.
 */
 {
-  // const scores = [70, 80, 95];
+  const scores = [70, 80, 95];
 
-  // const hasExcellentScore = scores.some(score => score >= 90);
+  const hasExcellentScore = scores.some(score => score >= 90);
 
-  // console.log(hasExcellentScore); // true
+  console.log(hasExcellentScore); // true
 }
 
 /*
@@ -120,11 +126,11 @@
   모든 요소가 조건을 만족하면 true를 반환한다.
 */
 {
-  // const scores = [70, 80, 95];
+  const scores = [70, 80, 95];
 
-  // const allPassed = scores.every(score => score >= 60);
+  const allPassed = scores.every(score => score >= 80);
 
-  // console.log(allPassed); // true
+  console.log(allPassed); // true
 }
 
 /*
@@ -136,13 +142,21 @@
   callback 함수는 파라미터로 누적값과 현재값를 받는다.
 */
 {
-  // const numbers = [10, 20, 30];
+  const numbers = [10, 20, 30];
 
-  // const total = numbers.reduce((sum, number) => {
-  //   return sum + number;
-  // }, 0);
+  let total1 = 0;
 
-  // console.log(total); // 60
+  for (const number of numbers) {
+    total1 += number;
+  }
+  console.log(total1);
+
+
+  const total = numbers.reduce((sum, number) => {
+    return sum + number;
+  }, 0);
+
+  console.log(total); // 60
 }
 /*
   두 번째 인수인 0은 누적값의 초기값이다.
@@ -157,16 +171,17 @@
   여러 작업을 하나의 표현식으로 처리할 수 있다.
 */
 {
-  // const users = [
-  //   { name: "홍길동", age: 20, active: true },
-  //   { name: "이순신", age: 17, active: true },
-  //   { name: "강감찬", age: 30, active: false },
-  // ];
+  const users = [
+    { name: "홍길동", age: 20, active: true },
+    { name: "이순신", age: 17, active: true },
+    { name: "강감찬", age: 30, active: false },
+  ];
+  // users의 사용자들중에서 "활성상태(active=true)"이고
+  // 나이가 19세 이상인 사용자의 이름들을 조회.
+  const names = users
+    .filter(user => user.active)
+    .filter(user => user.age >= 19)
+    .map(user => user.name);
 
-  // const names = users
-  //   .filter(user => user.active)
-  //   .filter(user => user.age >= 19)
-  //   .map(user => user.name);
-
-  // console.log(names); // ["홍길동"]
+  console.log(names); // ["홍길동"]
 }

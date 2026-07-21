@@ -11,13 +11,13 @@
   ---------------------------------------------
 */
 {
-  const colors = ["red", "green", "blue"];
+  // const colors = ["red", "green", "blue"];
 
-  const [first, second, third] = colors;
+  // const [first, second, third] = colors;
 
-  console.log(first);  // "red"
-  console.log(second); // "green"
-  console.log(third); // "blue"
+  // console.log(first);  // "red"
+  // console.log(second); // "green"
+  // console.log(third); // "blue"
 }
 
 /* 일부 값은 건너뛸 수 있다. */
@@ -34,7 +34,8 @@
 {
   // const values = [10];
 
-  // const [a, b = 0] = values;
+  // // const [a, b = 0] = values;
+  //   const [a, b] = values;
 
   // console.log(a, b); // 10, 0
 }
@@ -45,6 +46,7 @@
 
   // const [first, second, ...rest] = numbers;
 
+  // console.log(first, second);
   // console.log(rest); // [3, 4, 5]
 }
 
@@ -60,14 +62,13 @@
   //   age: 20,
   //   address: "서울"
   // };
-
   // const { name, age } = user;  // name 속성은 name변수에 age속성은 age 변수에 대입 된다.
 
   // console.log(name, age);
 
-  /* 다른 변수 이름으로 받을 수 있다. */
+  // /* 다른 변수 이름으로 받을 수 있다. */
   // const { name: userName, age: userAge } = user;
-
+  // // name: userName - name 속성의 값을 userName 변수에 대입.
   // console.log(userName, userAge);
 }
 
@@ -77,7 +78,8 @@
   //   name: "홍길동",
   // };
 
-  // const { name, age = 0 } = user;
+  // const { name, age = 0} = user;
+  // console.log(name, age);
 }
 
 /*
@@ -88,23 +90,23 @@
 
 /* [배열 구조 분해] */
 {
-  // function printElement([a,b]) {
-  //   console.log(a, b);
-  // }
+  function printElement([a,b]) {
+    console.log(a, b);
+  }
 
-  // printElement([10, 20, 30]);
+  printElement([10, 20, 30]);
 }
 
 /* [객체 구조 분해] */
 {
-  // function printUser({ name, age }) {
-  //   console.log(`${name}, ${age}세`);
-  // }
+  function printUser({ name, age }) {
+    console.log(`${name}, ${age}세`);
+  }
 
-  // const user = {
-  //   name: "홍길동",
-  //   age: 20,
-  // };
+  const user = {
+    name: "홍길동",
+    age: 20,
+  };
 
-  // printUser(user);
+  printUser(user);
 }

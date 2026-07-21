@@ -15,8 +15,10 @@ const fruits = ["사과", "배", "포도"];
   ---------------------------------------------
   배열의 요소는 인덱스를 이용해 조회, 변경 한다.
 */
+// const fruits = ["사과", "배", "포도"];
 // console.log(fruits[0]); // "사과"
 // console.log(fruits[1]); // "배"
+// console.log(fruits[5]); //없는 index - undefined
 
 // fruits[0] = '참외';
 // console.log(fruits);
@@ -40,9 +42,7 @@ const fruits = ["사과", "배", "포도"];
 */
 {
   // const numbers = [1, 2];
-
   // numbers.push(3);
-
   // console.log(numbers); // [1, 2, 3]
 }
 
@@ -56,6 +56,7 @@ const fruits = ["사과", "배", "포도"];
 
   // console.log(removed); // 3
   // console.log(numbers); // [1, 2]
+  // console.log(numbers[numbers.length-1]); 
 }
 
 /*
@@ -79,6 +80,7 @@ const fruits = ["사과", "배", "포도"];
   // const removed = numbers.shift();
 
   // console.log(removed); // 1
+  // console.log(numbers);
 }
 
 /*
@@ -99,8 +101,8 @@ const fruits = ["사과", "배", "포도"];
 */
 {
   // const numbers = [1, 2, 3, 4];
-
-  // numbers.splice(1, 2, 10, 20, 30);  // index 1 부터 2개의 요소를 그 이후 값들(10, 20)으로 변경한다.
+  // // numbers.splice(1, 2, 10, 20, 30);  // index 1 부터 2개의 요소를 그 이후 값들(10, 20)으로 변경한다.
+  // numbers.splice(1, 2); //변경할 값이 없으면 삭제.
 
   // console.log(numbers); // [1, 10, 20, 30, 4]
 }
@@ -117,6 +119,8 @@ const fruits = ["사과", "배", "포도"];
   // const result = a.concat(b);
 
   // console.log(result); // [1, 2, 3, 4]
+  // console.log(a);
+  // console.log(b);
 }
 
 /*
@@ -134,7 +138,7 @@ const fruits = ["사과", "배", "포도"];
   배열에 특정 값이 있는지 확인한다.
 */
 {
-  // const fruits = ["사과", "배", "포도"];
+  const fruits = ["사과", "배", "포도"];
 
-  // console.log(fruits.includes("배")); // true
+  console.log(fruits.includes("수박")); // true
 }

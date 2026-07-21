@@ -18,23 +18,27 @@
   조건은 위에서 아래 순서대로 검사하며, 처음으로 true가 된 블록만 실행하고 나머지는 검사하지 않는다.
 */
 {
-  const score = 85;
+  // const score = 65;
 
-  if (score >= 90) {
-    console.log("A");
-  } else if (score >= 80) {
-    console.log("B");
-  } else {
-    console.log("C");
-  }
+  // if (score >= 90) {
+  //   console.log("A");
+  // } else if (score >= 80) {
+  //   console.log("B");
+  // } else {
+  //   console.log("C");
+  // }
 }
 
 /* 조건식에는 비교식뿐 아니라 모든 값이 올 수 있다. */
 {
-  // const userName = "홍길동";
+  // const userName = "";
+
+  // console.log(Boolean(userName));
 
   // if (userName) {
   //   console.log("이름이 입력되었습니다.");
+  // }else {
+  //   console.log("이름을 입력하세요.");
   // }
 }
 
@@ -43,7 +47,7 @@
   하나의 값을 여러 경우와 비교할 때 사용할 수 있다.
 */
 {
-  // const menu = "save";
+  // const menu = "delete";
 
   // switch (menu) {
   //   case "save":
@@ -67,7 +71,7 @@
   break를 생략하면 다음 case의 코드까지 계속 실행된다.
 */
 {
-  // const month = 3;
+  // const month = 16;
 
   // switch(month) { //동등비교 연산
   //     case 1: case 3: case 5: case 7: case 8: case 10: case 12:
@@ -86,7 +90,7 @@
 
 /* switch는 타입을 자동으로 변환하지 않고 값을 비교한다. */
 {
-  // const value = 10;
+  // const value = 10; 
 
   // switch (value) {
   //   case "10":
@@ -110,20 +114,35 @@
   [for 문]
   반복 횟수가 분명할 때 주로 사용한다.
 */
-for (let i = 0; i < 5; i++) {
-  // console.log(i);
-}
+// for (초기식 ; 조건식; 증감식) {반복구문}
+/*
+ 초기식 -> 조건식-true->반복구문->증감식
+        -> 조건식-true->반복구문->증감식    
+        -> 조건식-false->종료
+*/
+// for (let i = 0; i < 5; i++) {
+//   console.log(i);
+// }
+
+// for (let i=0, j=5; i < 5 && j > 0; i++, j--) {
+//   console.log(i, j);
+// }
 
 /*
   [while 문]
   조건이 참인 동안 반복한다.
 */
 {
-  // let count = 0;
+  // while (true) {
+  //   console.log("hello");
+    
+  // }
 
-  // while (count < 5) {
-  //   console.log(count);
-  //   count++;
+  // let count = 0; // 초기식
+
+  // while (count < 5) { // 조건식
+  //   console.log(count); // 반복구문
+  //   count++; //증감식
   // }
 }
 
@@ -132,8 +151,7 @@ for (let i = 0; i < 5; i++) {
   조건을 검사하기 전에 반복문 본문을 한 번 실행한다.
 */
 {
-  // let count = 0;
-
+  // let count = 5;
   // do {
   //   console.log(count);
   //   count++;
@@ -147,6 +165,7 @@ for (let i = 0; i < 5; i++) {
 {
   // const numbers = [10, 20, 30];
 
+  
   // for (const number of numbers) {
   //   console.log(number);
   // }
@@ -154,11 +173,14 @@ for (let i = 0; i < 5; i++) {
 
 /* 인덱스와 값을 함께 사용하려면 entries()를 사용할 수 있다. */
 {
-  // const fruits = ["사과", "배", "포도"];
-
-  // for (const [index, fruit] of fruits.entries()) {
-  //   console.log(index, fruit);
-  // }
+//   const fruits = ["사과", "배", "포도"];
+//  // [index, value]
+//   for (const [index, fruit] of fruits.entries()) {
+//     // if (index == 1) {
+//     //   continue;
+//     // }
+//     console.log(index, fruit);
+//   }
 }
 
 /*
@@ -166,12 +188,14 @@ for (let i = 0; i < 5; i++) {
   객체의 속성 이름을 반복할 때 사용한다.
 */
 {
-  // const user = {
-  //   name: "홍길동",
-  //   age: 20,
-  // };
+  const user = {
+    name: "홍길동",
+    age: 20,
+  };
 
-  // for (const key in user) {
+  // console.log(user.name, user["name"]);
+
+  // for (const key in user) { // key: string
   //   console.log(key, user[key]);
   // }
 }
@@ -181,18 +205,18 @@ for (let i = 0; i < 5; i++) {
   break는 반복문을 즉시 종료한다.
 */
 for (let i = 0; i < 10; i++) {
-  // if (i === 3) {
-  //   break;
-  // }
+  if (i === 3) {
+    break;
+  }
 
-  // console.log(i);
+  console.log(i);
 }
 
 /* continue는 현재 반복을 건너뛰고 다음 반복을 실행한다. */
 for (let i = 0; i < 10; i++) {
-  // if (i % 3 === 0) {
-  //   continue;
-  // }
+  if (i % 3 === 0) { // 3의 배수
+    continue;
+  }
 
-  // console.log(i);
+  console.log(i);
 }

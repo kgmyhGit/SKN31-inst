@@ -7,11 +7,11 @@
   객체는 속성 이름을 사용하여 데이터에 접근한다.
 */
 
-const person = {
-  name: "홍길동",
-  age: 20,
-  address: "서울",
-};
+// const person = {
+//   name: "홍길동",
+//   age: 20,
+//   address: "서울",
+// };
 
 /*
   ---------------------------------------------
@@ -22,15 +22,20 @@ const person = {
 /* 점 표기법을 사용할 수 있다. */
 // console.log(person.name);
 // person.age = 21;
+// console.log(person);
 
 /* 대괄호 표기법도 사용할 수 있다. 이 경우 속성명은 문자열로 지정한다. */
 // console.log(person["name"]);
 // person["age"] = 22;
+// console.log(person);
+// const age = "name";
+// console.log(person[age]); 
+// age변수의 값을 property 이름으로 넣어서 조회
+
 
 /* 속성 이름이 변수에 저장되어 있으면 대괄호 표기법을 사용한다. */
 {
   // const key = "address";
-
   // console.log(person[key]);
 }
 
@@ -45,6 +50,7 @@ const person = {
   //   name: "홍길동",
 
   //   introduce() {
+  //   // introduce: function() {
   //     console.log(`저는 ${this.name}입니다.`);
   //   },
   // };
@@ -63,7 +69,7 @@ const person = {
   // const age = 20;
 
   // const user = {
-  //   name,
+  //   name, // name: name,
   //   age,
   // };
 
@@ -76,10 +82,10 @@ const person = {
   ---------------------------------------------
 */
 {
-  // const user = {
-  //   name: "홍길동",
-  //   age: 20,
-  // };
+  const user = {
+    name: "홍길동",
+    age: 20,
+  };
 
   /* [속성명들 조회] */
   // console.log(Object.keys(user));
@@ -96,6 +102,10 @@ const person = {
   // for (const [key, value] of Object.entries(user)) {
   //   console.log(key, value);
   // }
+
+  // for (const key in user) {
+  //   console.log(key, user[key]);
+  // }
 }
 
 /*
@@ -111,10 +121,14 @@ const person = {
 {
   // const user = {
   //   name: "홍길동",
-
+  //   age: 20,
   //   introduce() {
-  //     console.log(this.name);
+  //     console.log(this.name, this.age); // this: user
+  //     this.test()
   //   },
+  //   test() {
+  //     console.log("test");
+  //   }
   // };
 
   // user.introduce();
@@ -125,14 +139,14 @@ const person = {
  따라서 객체의 메서드에서 this를 사용할 때는 일반 메서드 문법을 사용하는 것이 자연스럽다.
  */
 {
-  // const user = {
-  //   name: "홍길동",
+  const user = {
+    name: "홍길동",
 
-  //   introduce: () => {
-  //     console.log(this.name);
-  //   },
-  // };
+    introduce: () => {
+      console.log(this, this.name);
+    },
+  };
 
-  // user.introduce(); // undefined
+  user.introduce(); // undefined
 }
 
