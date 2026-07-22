@@ -6,9 +6,9 @@ const todoList = document.querySelector("#todo-list");
 
 // 입력값으로 새 li 요소를 만들어 반환한다.
 function createListItem() {
-  const item = document.createElement("li");
+  const item = document.createElement("li"); // <li></li>
 
-  item.textContent = itemInput.value;
+  item.textContent = itemInput.value; //<li>value</li>
 
   return item;
 }
@@ -34,10 +34,12 @@ const insertAfterButton = document.querySelector("#insert-after-button");
 
 function insertParagraphBefore() {
   // baseParagraph 앞에 삽입
-  const newParagraph = document.createElement("p");
-  newParagraph.style.color = "blue";
+  const newParagraph = document.createElement("p");//<p></p>
+  newParagraph.style.color = "blue";//<p style="color:blue;"></p>
 
   newParagraph.textContent = "기준 문단 앞에 삽입된 문단";
+  //<p style="color:blue;">기준 문단 앞에 삽입된 문단</p>
+
   baseParagraph.before(newParagraph);
 }
 
@@ -56,7 +58,7 @@ const fruitList = document.querySelector("#fruit-list");
 
 function removeAppleItem() {
 
-  const appleItem = document.querySelector("#apple-item");
+  const appleItem = document.querySelector("#apple-item");//삭제할 노드
 
   if (!appleItem) {
     console.log("사과 항목이 이미 삭제되었습니다.");
@@ -69,6 +71,10 @@ function removeAppleItem() {
 
 function removeAllItem() {
 
+  // ElementNode.hasChildNodes(): 자식노드가 있는지 여부.
+  // ElementNode.firstChild/lastChild : 첫번째/마지막 자식 노드 객체를 반환.
+  // ElementNode.parentNode // 부모노드 반환
+  // ElementNode.children   // 모든 자식노드들을 Node List로 반환.
   while (fruitList.hasChildNodes()) {
       // 부모노드.removeChild(삭제할 자식노드);
       fruitList.removeChild(fruitList.firstChild);
@@ -89,11 +95,11 @@ function replaceOldParagraph() {
     return;
   }
 
-  const newElement = document.createElement("p");
-  const strongElement = document.createElement("strong")
-  newElement.append(strongElement)
+  const newElement = document.createElement("p");//<p></p>
+  const strongElement = document.createElement("strong")//<strong></strong>
+  newElement.append(strongElement);//<p><strong></strong></p>
 
-  strongElement.textContent = "교체된 새 요소(p strong)";
+  strongElement.textContent = "교체된 새 요소(p strong)";//<p><strong>교체된 새 요소(p strong)</strong></p>
   oldParagraph.replaceWith(newElement);
 }
 

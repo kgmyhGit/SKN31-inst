@@ -21,7 +21,7 @@ const selectAllResult = document.querySelector("#select-all-result");
 
 function selectAllFruits() {
   const fruits = document.querySelectorAll(".fruit");
-
+  // [li, li, li]
   console.log("찾은 요소 개수(length):", fruits.length);
 
   fruits.forEach(fruit => {

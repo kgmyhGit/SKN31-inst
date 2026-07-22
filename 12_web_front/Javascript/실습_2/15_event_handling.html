@@ -7,6 +7,7 @@
   <script src="./scripts/15_event_handling.js" defer></script>
 </head>
 <body style="margin:15px">
+
   <h1>15. 이벤트(Event) 처리</h1>
   <p>각 실습의 결과는 화면과 개발자 도구 콘솔(F12)에서 확인할 수 있습니다.</p>
 
@@ -14,7 +15,8 @@
     <h2>15.1 이벤트 등록</h2>
     <p>버튼을 클릭하면 addEventListener()로 등록한 함수가 실행됩니다.</p>
 
-    <button id="confirm-button" type="button">확인</button>
+    <button id="confirm-button"
+            type="button">확인</button>
     <p id="click-result">아직 클릭하지 않았습니다.</p>
   </section>
 
@@ -41,11 +43,11 @@
     <h2>15.4 기본 동작 막기</h2>
     <p>폼을 제출해도 preventDefault() 때문에 페이지가 새로고침되지 않습니다.</p>
 
-    <form id="simple-form">
-      <label>
+    <form id="simple-form" action="https://www.naver.com">
+      
         <label for="message-input">메세지</label>
         <input id="message-input" name="message" type="text">
-      </label>
+      
       <button type="submit">제출</button>
     </form>
     <p id="submit-result">아직 제출하지 않았습니다.</p>

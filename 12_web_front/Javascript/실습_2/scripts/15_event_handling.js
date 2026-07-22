@@ -7,6 +7,8 @@ let clickCount = 0;
 function showClickMessage() {
   clickCount = clickCount + 1;
   clickResult.textContent = `버튼을 ${clickCount}번 클릭했습니다.`;
+  //<p>textContent</p>
+  
   console.log("클릭 횟수:", clickCount);
 }
 
@@ -43,6 +45,8 @@ function handleFormSubmit(event) {
   
   submitResult.textContent = `제출된 메시지: ${messageInput.value}`;
   console.log("폼 제출을 JavaScript에서 처리했습니다. 메시지:", messageInput.value);
+
+
 }
 
 // 15.5 이벤트 전파(이벤트 위임)
@@ -63,6 +67,6 @@ function showClickedUser(event) {
 // 이벤트 등록
 confirmButton.addEventListener("click", showClickMessage);
 eventInfoButton.addEventListener("click", showEventInfo);
-nameInput.addEventListener("input", showCurrentInputValue);
+nameInput.addEventListener("change", showCurrentInputValue);
 simpleForm.addEventListener("submit", handleFormSubmit);
 userList.addEventListener("click", showClickedUser);

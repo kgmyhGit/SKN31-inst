@@ -22,7 +22,7 @@
 // 한 파일에서 여러 개의 값을 이름 있는 내보내기로 내보낼 수 있다.
 
 // 선언과 동시에 내보내기
-export function add(a, b) {
+export default function add(a, b) {
   return a + b;
 }
 

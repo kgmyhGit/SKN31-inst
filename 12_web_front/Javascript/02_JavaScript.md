@@ -34,7 +34,7 @@ button.addEventListener("click", () => {
 
 위 코드는 `button`에서 `click` 이벤트가 발생할 때마다 등록한 화살표 함수를 실행하여 콘솔에 메시지를 출력한다.
 
-> **인라인 이벤트 처리**: Tag에 on이벤트이름(예: `onclick`, `onblur`) 와 같은 event handler 속성에 처리 로직을 넣는 방식으로 이벤트 처리를 할 수있다. 이는 JavaScript classic 방식으로 지금도 동작하지만 현대적인 웹 개발에서는 일반적으로 권장하지 않고, JavaScript의 addEventListener()를 사용하는 것이 권장된다
+> **인라인 이벤트 처리**: Tag에 on이벤트이름(예: `onclick`, `onblur`) 와 같은 event handler 속성에 처리 로직을 넣는 방식으로 이벤트 처리를 할 수있다. 이는 JavaScript classic 방식으로 지금도 동작하지만 현대적인 웹 개발에서는 일반적으로 권장하지 않고, JavaScript의 addEventListener()를 사용하는 것이 권장된다   
 > `<button onclick="checkValue();">값 검증</button>`
 
 ## 15.2 이벤트 객체
