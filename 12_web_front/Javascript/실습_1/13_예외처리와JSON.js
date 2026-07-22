@@ -32,7 +32,6 @@
 */
 // try {
 //   console.log("작업 시작");
-//   const result = JSON.parse("잘못된 JSON");
 // } catch (error) {
 //   // console.error(error);
 //   console.log("에러발생");
