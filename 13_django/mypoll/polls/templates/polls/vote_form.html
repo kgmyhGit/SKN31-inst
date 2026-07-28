@@ -8,6 +8,12 @@
 </head>
 <body>
     <h1>설문 폼</h1>
+    
+    {% if error_message %}
+        <div style="color:red;font-weight:bold;">
+            {{error_message}}
+        </div>
+    {% endif %}
 
     <b>질문: {{question.pk}}. {{question.question_text}}</b>
     <form action="/polls/vote" method="post">
