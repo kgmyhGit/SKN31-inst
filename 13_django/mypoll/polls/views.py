@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponse
+from django.db import transaction
+
 from datetime import datetime
 # 모델 클래스  import
 from .models import Question, Choice
@@ -168,3 +170,83 @@ def vote_result(request, question_id):
         "polls/vote_result.html", 
         {"question":question, "choice_list":choice_list}
     )
+
+
+######################################################################
+# 설문 질문 등록
+#
+# 요청 URL: /polls/vote_create
+# View함수: vote_create
+##          요청방식: GET - 등록 폼을 응답
+##                   POST - 등록 처리 
+# 응답: GET - polls/vote_create.html (template)
+#       POST- redirect => vote_list View를 요청 (질문목록으로 이동)
+######################################################################
+# HTTP 요청방식을 조회: request.method (GET, POST, ..)
+
+def vote_create(request):
+    http_method = request.method
+    print(">>>>>> Vote Create: ", http_method)
+
+    if http_method == "GET":
+        # 등록폼 template 응답
+        return render(request, "polls/vote_create.html")
+    elif http_method == "POST":
+        # 등록 처리
+        ## 1. 요청파라미터들 조회, 검증
+        ## 2. 처리 -> DB insert
+        ## 3. 응답
+
+        # 요청파라미터 조회 - request.GET, request.POST dictionary 구현체
+        ## 조회메소드: get(이름)-조회결과가 한개인 경우. return: str
+        ##            getlist(이름)-하나의 이름으로 여러개 값이 넘어오는 경우. return list[str]
+        question_text = request.POST.get('question_text') # str
+        choice_list = request.POST.getlist('choice_text') # list[str]
+
+        # 요청파라미터 검증
+        ## question_text로 넘어온 값이 없거나 (있는데 빈문자열이라면)
+        if not question_text or (question_text and not question_text.strip()):
+            return render(
+                request, 
+                "polls/vote_create.html", 
+                {
+                    "error_message":"질문은 한글자 이상 입력하세요.",
+                    "question_text":question_text,
+                    "choice_list":choice_list
+                }
+            )
+    
+        ## 보기 요청파라미터 검증 - 보기가 두개 미만이라면
+        if not choice_list or (choice_list and len([c for c in choice_list if c.strip()])< 2):
+            return render(
+                request, 
+                "polls/vote_create.html", 
+                {
+                    "error_message":"보기는 두개 이상 입력하세요.",
+                    "question_text":question_text,
+                    "choice_list":choice_list
+                }
+            )
+
+        ######## 질문/보기 등록 처리
+        try:
+            ## transaction 처리 -> 질문과 보기가 모두 insert 되거나 실패하면 모두 insert안되도록 보장
+            with transaction.atomic(): # Transaction시작
+                # with block을 정상적으로 실행 수 나오면 commit 실행
+                #           실행중 오류 발생하면 rollback 실행.(DB의 상태를 시작하기 전 상태로 돌린다.)
+                q = Question(question_text=question_text)
+                q.save()
+                
+                for choice_text in choice_list:
+                    choice = Choice(choice_text=choice_text, question=q) # id/vote는 자동입력
+                    choice.save()
+
+        except Exception as e:
+            return render(
+                request, 
+                "polls/error.html", 
+                {"error_message": "설문을 저장하는 도중 에러가 발생했습니다. 관리자에게 문의하세요."}
+            )
+
+    ###### 응답: redirect방식 -> 설문 목록이동
+    return redirect(reverse("polls:vote_list"))
