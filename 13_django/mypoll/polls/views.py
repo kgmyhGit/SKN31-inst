@@ -184,7 +184,7 @@ def vote_result(request, question_id):
 ######################################################################
 # HTTP 요청방식을 조회: request.method (GET, POST, ..)
 
-def vote_create(request):
+def vote_create_old(request):
     http_method = request.method
     print(">>>>>> Vote Create: ", http_method)
 
