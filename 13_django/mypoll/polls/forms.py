@@ -29,6 +29,7 @@ class QuestionForm(forms.Form):
         # cleaned_data['요청파라미터이름'] : 기본검증을 통화한 모든 요청파라미터값들.
         txt = self.cleaned_data['question_text'].strip()
         # 질문은 5글자 이상.
+        print("<<<<<<<<<<", len(txt))
         if len(txt) < 5:
             # 검증 실패 -> ValidationError를 발생
             raise forms.ValidationError("질문은 5글자 이상 입력하세요.")
@@ -44,9 +45,10 @@ class ChoiceForm(forms.Form):
     )
 
     def clean_choice_text(self):
-        txt = self.cleaned_data['choice_text'].strip()
-        if not len(txt):
-            raise forms.ValidationError("보기는 1글자 이상 입력하세요.")
+        txt = self.cleaned_data['choice_text']
+        print("------", len(txt), txt)
+        if len(txt.strip()) < 2:
+            raise forms.ValidationError("보기는 2글자 이상 입력하세요.")
 
         return txt
 

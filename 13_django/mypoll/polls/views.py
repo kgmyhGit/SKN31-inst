@@ -274,7 +274,7 @@ def vote_create(request):
         # 등록 처리
         ## 요청파라미터를 Form을 이용해서 처리.(조회, 검증)
         ## 요청파라미터(request.POST) 를 initializer에 넣어서 객체 생성
-        ### 요청파라미터name-instance변수에 맞춰서 값을 할당하고 검증(기본, clean)까지 처리.
+        ### 요청파라미터name를 검증하고 검증 통과한 값들을 cleaned_data에 저장. 검증(기본, clean메소드)
         q_form = QuestionForm(request.POST, request.FILES)
         c_formset = ChoiceFormSet(request.POST, request.FILES)
         # 요청파라미터 검증 성공 여부 확인 - 성공: 처리, 실패: 오류처리 페이지로 이동
@@ -300,3 +300,10 @@ def vote_create(request):
                     {"error_message": "설문 질문 등록 도중 오류 발생"}
                 )
             return redirect(reverse("polls:vote_list"))
+        else:
+            # 검증 실패 -> form객체를 context value로 해서 다시 vote_create.html로 이동.
+            return render(
+                request,
+                "polls/vote_create_form.html",
+                {"q_form":q_form, "c_formset":c_formset} #요청파라미터 가진 Form들
+            )
