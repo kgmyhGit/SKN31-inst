@@ -250,3 +250,53 @@ def vote_create_old(request):
 
     ###### 응답: redirect방식 -> 설문 목록이동
     return redirect(reverse("polls:vote_list"))
+
+
+#######################
+# Form을 이용
+#######################
+from .forms import QuestionForm, ChoiceFormSet, ChoiceForm
+def vote_create(request):
+    if request.method == 'GET':
+        # 응답화면 반환
+        ## Form을 이용해서 template에 입력 양식을 구현할 경우.
+        ## Form객체를 생성, 객체를 context value로 template에게 전달.
+        q_form = QuestionForm()
+        # c_form = ChoiceForm()
+        c_formset = ChoiceFormSet()
+
+        return render(
+            request, 
+            "polls/vote_create_form.html",
+            {"q_form":q_form, "c_formset":c_formset}
+        )
+    elif request.method == 'POST':
+        # 등록 처리
+        ## 요청파라미터를 Form을 이용해서 처리.(조회, 검증)
+        ## 요청파라미터(request.POST) 를 initializer에 넣어서 객체 생성
+        ### 요청파라미터name-instance변수에 맞춰서 값을 할당하고 검증(기본, clean)까지 처리.
+        q_form = QuestionForm(request.POST, request.FILES)
+        c_formset = ChoiceFormSet(request.POST, request.FILES)
+        # 요청파라미터 검증 성공 여부 확인 - 성공: 처리, 실패: 오류처리 페이지로 이동
+        ## form.is_valid(): bool -> 검증 성공여부 확인.
+        if q_form.is_valid() and c_formset.is_valid():
+            # 요청파라미터 값들을 Form에서 조회
+            q_text = q_form.cleaned_data['question_text']
+            choice_list = []
+            for c_form in c_formset:
+                choice_list.append(c_form.cleaned_data['choice_text'])
+            # DB 저장
+            try:
+                with transaction.atomic():
+                    q = Question(question_text=q_text)
+                    q.save()
+                    for choice in choice_list:
+                        c = Choice(choice_text=choice, question=q)
+                        c.save()
+            except Exception as e:
+                return render(
+                    request, 
+                    "polls/error.html", 
+                    {"error_message": "설문 질문 등록 도중 오류 발생"}
+                )
+            return redirect(reverse("polls:vote_list"))
