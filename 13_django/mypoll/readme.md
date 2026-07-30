@@ -1,3 +1,4 @@
+# 장고 프로젝트 생성
 1. mypoll  프로젝트 디렉토리 생성
 2. 가상환경을 생성 (mypoll안에서 생성)
     - `uv venv .venv --python=3.13`
@@ -31,7 +32,7 @@
         -`http://127.0.0.1:8000/admin`
 
 
-# tempate 생성
+## tempate 생성
 - 위치
     - `app/templates` 하위에 작성.
         - `polls/templates/polls`
@@ -40,3 +41,32 @@
     - 파일명: `xxxxx.html`, html기반으로 작성.
     - **template은 HTML이 아님.**
         - html, css, javascript + django template문법
+
+# account APP 구현 (사용자 관리)
+- APP 생성
+    - `python manage.py startapp account`
+    - config/settings.py에 `INSTALLED_APPS` 에 등록 ("account")
+    - url config에 account URL 매핑 설정
+        - config/urls.py (ROOT URLConfig) 에 account -> account/urls.py 호출하도록 설정
+        - account/urls.py 생성.
+    - templates 디렉토리 생성:
+        - `account/templates/account`
+
+## 사용자관리 
+### Model 정의
+- AbstractUser 상속
+    - Django의 기존 User Model의 Field들을 이용.
+    - 기존 Model Field들을 상속해서 추가
+- config/settings 에 사용자 관리시 사용할 모델로 등록
+    - admin app에서 사용하는 User Model를 우리가 정의한 User Model로 변경
+    - AUTH_USER_MODEL = 'account.CustomUser'
+- `account/admin.py` 에 CustomUser 모델을 등록 -> 관리자앱에서 관리가능.
+
+- DB에 적용
+    - `mypoll/db.sqlite3` 삭제(DB삭제)
+    - `python manage.py makemigrations`
+    - `python manage.py migrate`
+    - `python manage.py createsuperuser` (admin/1111)
+
+    python manage.py runserver
+
