@@ -3,6 +3,11 @@ from django.urls import reverse
 from django.http import HttpResponse
 from django.db import transaction
 from django.core.paginator import Paginator
+
+from django.contrib.auth.decorators import login_requried
+# 로그인 해야지만 처리할 수 있는 view함수에 붙이는 decorator. 로그인이 안된 상태로 요청이 
+# 들어오면 로그인 화면으로 이동시킨다. 
+
 from datetime import datetime
 # 모델 클래스  import
 from .models import Question, Choice
