@@ -30,6 +30,7 @@
                 {% if user.is_authenticated %}
                     <a href="{% url 'polls:vote_create' %}" class="nav-link">설문등록</a>
                     <a href="{% url 'account:logout' %}" class="nav-link">로그아웃</a>
+                    <a href="{% url 'account:detail' %}" class="nav-link">{{request.user.username}}</a>
                 {% endif %}
                 
                 {% if not user.is_authenticated %}

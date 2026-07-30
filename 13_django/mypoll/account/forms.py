@@ -17,7 +17,7 @@ class CustomUserCreationForm(UserCreationForm):
     username = forms.CharField(label="ID", required=True, max_length=30)
     # UserCreateForm에 없는 field 등록
     # age = forms.IntegerField(label="나이") # Meta.fields에 추가.
-    
+
     class Meta:
 
         model = CustomUser # 연결할 Model을 지정.
@@ -32,7 +32,28 @@ class CustomUserCreationForm(UserCreationForm):
             "birthday":forms.DateInput(attrs={"type":"date"}) # DataInput: 날짜 형식입력. type=date정의
         }
 
-    # 검증 메소드 추가asdf
+    # 검증 메소드 추가
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        if len(name) < 2:
+            raise forms.ValidationError("이름은 두 글자 이상 입력하세요.")
+
+        return name
+
+
+### 사용자 정보 변경 폼
+class CustomUserChangeForm(UserChangeForm):
+    # 비밀번호 변경 설정이 안나오도록 처리
+    password = None
+
+    class Meta:
+        model = CustomUser 
+        fields = ["name", "email", "birthday"]
+        widgets = {
+            "birthday": forms.DateInput(attrs={"type":"date"})
+        }
+
+    # 검증 메소드 추가
     def clean_name(self):
         name = self.cleaned_data['name']
         if len(name) < 2:
