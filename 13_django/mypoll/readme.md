@@ -53,6 +53,11 @@
         - `account/templates/account`
 
 ## 사용자관리 
+
+- djanog-bootstrap5 설치: bootstrap을 적용하는 template 태그들을 제공.
+- `uv pip install django-bootstrap5`
+- config/settings.py 의 `INSTALLED_APP` 에 등록 ('django_bootstrap5')
+
 ### Model 정의
 - AbstractUser 상속
     - Django의 기존 User Model의 Field들을 이용.
@@ -61,6 +66,7 @@
     - admin app에서 사용하는 User Model를 우리가 정의한 User Model로 변경
     - AUTH_USER_MODEL = 'account.CustomUser'
 - `account/admin.py` 에 CustomUser 모델을 등록 -> 관리자앱에서 관리가능.
+    - Admin APP에서 User 관리하는 화면을 변경.
 
 - DB에 적용
     - `mypoll/db.sqlite3` 삭제(DB삭제)
@@ -69,4 +75,13 @@
     - `python manage.py createsuperuser` (admin/1111)
 
     python manage.py runserver
+
+### Form 정의
+- `account\forms.py` 생성하고 그 안에 구현
+- ModelForm으로 생성화면, 수정화면에서 사용할 Form을 정의
+- ModelForm
+    - Form을 Model을 이용해서 정의. Model의 Field들을 Form Field로 사용.
+    - Form Field의 설정을 Model Field에 정의.
+    - ModelForm 생성시 Model을 지정하고 어떤 Field들을 Form에 넣을지 선택.
+        - save()메소드를 제공 -> insert와 update를 Model을 거치지 않고 할 수 있다.
 

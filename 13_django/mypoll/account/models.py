@@ -10,7 +10,7 @@ class CustomUser(AbstractUser):
 
     name = models.CharField(
         max_length=100,
-        verbose_name="이름" # Form 관련 설정.
+        verbose_name="이름" # Form 관련 설정(Label). - ModelForm과 연결할 Model의 경우.
     )
     birthday = models.DateField( # DB: date타입, python: datetime.date
         null=True, # Nullable(Null허용) 컬럼 (default: False - Not Null)

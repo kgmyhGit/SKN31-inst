@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polls',
     'account',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
