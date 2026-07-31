@@ -21,7 +21,9 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
 
         model = CustomUser # 연결할 Model을 지정.
-        fields = ["username", "password1", "password2",  "name", "email", "birthday"]
+        fields = ["username", "password1", "password2",  "name", "email", "birthday", 
+                  "profile_img", "upfile"]
+        
         # 입력양식에 추가할 Model의 Field들을 정의
         # [Field 선택, ...]: form을 만드는 데 사용할 필드들을 선택.
         # fields = "__all__" : 모든 필드들을 이용해서 form을 구성
@@ -48,7 +50,7 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = CustomUser 
-        fields = ["name", "email", "birthday"]
+        fields = ["name", "email", "birthday", "profile_img", "upfile"]
         widgets = {
             "birthday": forms.DateInput(attrs={"type":"date"})
         }

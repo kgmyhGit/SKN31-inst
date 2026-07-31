@@ -24,6 +24,18 @@
     </tr>
 </table>
 
+{% if user.profile_img %}
+<div>
+    <img src="{{user.profile_img.url}}">
+</div>
+{% endif %}
+
+{% if user.upfile %}
+<div>
+    <a href="{{user.upfile.url}}">{{user.upfile}}</a>
+</div>
+{% endif %}
+
 <div class="mt-5">
     <a href="{% url 'account:update' %}" class="btn btn-primary">수정</a>
     <a href="{% url 'account:password_change' %}" class="btn btn-primary">패스워드변경</a>

@@ -126,4 +126,16 @@ LOGIN_URL = "/account/login"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'  # static 을 요청할 때의 url 경로.
+STATICFILES_DIRS = [BASE_DIR / "static"] 
+            # base_dir/static 아래에도 static 파일들이 있다.
+
+STATIC_ROOT = BASE_DIR / "static_root"
+# python manage.py collectstatic
+## 모든 static 디렉토리에 있는 static 파일들을 STATIC_ROOT 디렉토리로 복사한다.
+
+####################
+# 파일업로드 설정
+#####################
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"

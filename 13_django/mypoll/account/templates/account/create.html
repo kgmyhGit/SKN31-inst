@@ -1,3 +1,4 @@
+<!-- acccount/templates/account/create.html -->
 {% extends 'layout/main_layout.html' %}
 
 {# 사용자 정의 template태그들을 사용하기 위해선 load해야한다. #}
@@ -7,9 +8,13 @@
 {% block contents %}
 
 <h1>가입</h1>
-<form method="post">
+<!-- 파일업로드가 있는 form: enctype을 설정. -->
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    
+    <!-- <input type="file" name="f1"><br>
+    <input type="file" name="f2"><br>
+    <input type="file" name="f3" class="form-control"> -->
+
     {#{form}#}
     {% bootstrap_form  form %}
 
