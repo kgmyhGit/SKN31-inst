@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     chatForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const message = messageInput.value.trim();
+        const message = messageInput.value.trim(); // 입력 메세지를 읽기.
         if (!message) return;
 
         appendMessage(message, 'user-message');
@@ -14,9 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleForm(true);
 
         let aiMessageElement = null;
+        
+        // SSE 요청 -> EventSource(요청 url)
+        // encodeURIComponent(str): URL 인코딩 처리.
 
         const eventSource = new EventSource(`/chat/stream/?message=${encodeURIComponent(message)}`);
 
+        // EventSource에 Event Hander를 추가.
+        // onmessage: 서버에서 답변이 올때마다 호출. 답변은 event.data 
+        // onerror: 실행도중 Error가 발생하면 호출
         eventSource.onmessage = (event) => {
             if (event.data === '[DONE]') {
                 eventSource.close();

@@ -27,7 +27,7 @@ def get_chain():
             {"role": "user", "content": "{input}"}
         ]
     )
-    chat = ChatOpenAI(model_name="gpt-5-mini")
+    chat = ChatOpenAI(model_name="gpt-5.4-mini")
     return prompt | chat
 
 def index(request):
@@ -36,6 +36,8 @@ def index(request):
 def stream_chat(request):
     message = request.GET.get('message', '')
     if not message:
+        # StreamingHttpResponse(iterable/generator, content_type="text/event-stream")
+        ## iterable이 값을 제공할 때 마다 응답.
         return StreamingHttpResponse("data: [ERROR] 메세지를 입력하세요.\n\n", content_type='text/event-stream')
 
     if 'message_history' not in request.session:
@@ -43,12 +45,26 @@ def stream_chat(request):
         request.session.modified = True
         request.session.save()
 
+    # 답변 처리 generator
+    # def gen():
+
+    #     yield 값1
+
+    #     yield 값2
+
+    #     yield 값3
+    # g = gen() #객체 생성
+    # next(g)
+    # for v in g:
+
+
     def event_stream():
         try:
+            # Session에서 지금까지의 대화 내역 조회
             message_history = request.session.get('message_history', [])
 
-            chat = get_chain()
-            ai_message = ""
+            chat = get_chain() #llm chain
+            ai_message = ""  # LLM 모델이 stream방식으로 출력하는 응답을 모아 저장할 변수
             
             print(f"현재 히스토리: {len(message_history)}개 메시지")
             for chunk in chat.stream({"input": message, "history": message_history}):
@@ -82,14 +98,15 @@ def stream_chat(request):
             request.session.save()
             
             print(f"저장된 히스토리: {len(message_history_to_save)}개 메시지")
-            yield "data: [DONE]\n\n"
+            yield "data: [DONE]\n\n" # client에게 보내는 답변 완료 flag값.
 
         except Exception as e:
             traceback.print_exc()
-            yield f"data: [ERROR] {str(e)}\n\n"
+            yield f"data: [ERROR] {str(e)}\n\n" # client에게 보내는 ERROR 표시
 
     response = StreamingHttpResponse(event_stream(), content_type='text/event-stream') # iterable
     response['Cache-Control'] = 'no-cache'
+    # 응답정보의 Head의 Cach-Control을 no-cache 설정. 응답데이터를 웹브라우저가 저장하지 않게 하기.
    
     return response
 
