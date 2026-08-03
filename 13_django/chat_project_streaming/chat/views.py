@@ -33,6 +33,7 @@ def get_chain():
 def index(request):
     return render(request, 'chat/index.html')
 
+# 응답 처리 view
 def stream_chat(request):
     message = request.GET.get('message', '')
     if not message:
@@ -57,7 +58,7 @@ def stream_chat(request):
     # next(g)
     # for v in g:
 
-
+    # 응답 생성 generator
     def event_stream():
         try:
             # Session에서 지금까지의 대화 내역 조회
@@ -71,7 +72,7 @@ def stream_chat(request):
                 content = chunk.content.replace('\n', '<br>')
                 if content:
                     ai_message += content
-                    yield f"data: {content}\n\n"
+                    yield f"data: {content}\n\n" #SSE 응답 형식: data: 메세지 \n\n
             
             message_history.append(HumanMessage(content=message))
             message_history.append(AIMessage(content=ai_message.replace('<br>', '\n')))
@@ -98,7 +99,7 @@ def stream_chat(request):
             request.session.save()
             
             print(f"저장된 히스토리: {len(message_history_to_save)}개 메시지")
-            yield "data: [DONE]\n\n" # client에게 보내는 답변 완료 flag값.
+            yield "data: [DONE]\n\n" # client에게 보내는 답변 완료 flag값. (client가 연결을 close)
 
         except Exception as e:
             traceback.print_exc()

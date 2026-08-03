@@ -1,0 +1,29 @@
+# sudo nano /etc/nginx/sites-available/mypoll_chat
+# server_name을 AWS public ip로 변경한다.
+# 챗봇 스트리밍을 위해서 nginx에서 응답시 cache/buffer 사용하지 않게 설정
+
+server {
+    listen 80;
+    server_name 15.164.23.230;
+
+    location /static/ {
+        alias /var/www/mypoll_chat/static/;
+    }
+
+    location /media/ {
+        alias /var/www/mypoll_chat/media/; 
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:run/mypoll_chat/gunicorn.sock;
+        
+        chunked_transfer_encoding on;
+        gzip off;
+        proxy_buffering off;
+        proxy_request_buffering off;
+        proxy_cache off;
+        proxy_read_timeout 30000;
+        proxy_send_timeout 30000;
+    }
+}
